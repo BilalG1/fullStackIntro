@@ -1,0 +1,2 @@
+C:\Users\bg200\source\repos\BruinShackProj1\BruinShackProj1\obj\Debug\BruinShackProj1.njsproj.CoreCompileInputs.cache
+C:\Users\bg200\source\repos\BruinShackProj1\BruinShackProj1\bin\Microsoft.NodejsTools.WebRole.dll
