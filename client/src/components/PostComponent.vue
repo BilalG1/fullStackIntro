@@ -61,7 +61,6 @@
                         posterName = names[index];
                         document.getElementById("loginLabel").innerHTML = "Logged in as: "+posterName;
                     }
-                    //document.getElementById("loginLabel").innerHTML = index;
                 }
             },
             async createPost() {
