@@ -8,17 +8,23 @@
             <input type="text" id="create-post" v-model="text" placeholder="Create a post" />
             <button v-on:click="createPost">Post!</button>
         </div>
+        <div><p> </p></div>
+        <div class="login">
+            <label id="loginLabel" for="enter-login">Login...</label>
+            <input type="number" id="enter-login" v-model="textTwo" placeholder="Enter 3-digit pin" />
+            <button v-on:click="login">Login!</button>
+        </div>
         <hr />
         <p class="error" v-if="error">{{ error }}</p>
         <div class="posts-container">
             <div class="post"
-                 v-for="(post, index) in posts"
+                 v-for="(post, index) in posts.slice().reverse()"
                  v-bind:item="post"
                  v-bind:index="index"
                  v-bind:key="post._id"
                  v-on:dblclick="deletePost(post._id)">
 
-                {{ `${post.createdAt.toString().slice(0,post.createdAt.toString().search("GMT"))}`}}
+                {{ `${post.createdAt.toString().slice(0,post.createdAt.toString().search("GMT")-4)}`}}
                 <p class="text">{{ post.text }}</p>
             </div>
         </div>
@@ -26,7 +32,7 @@
 </template>
 <script>
     import PostService from '../PostService';
-
+    var posterName = "Anonymous";
     export default {
         name: 'PostComponent',
         data() {
@@ -46,8 +52,20 @@
             }
         },
         methods: {
+            async login() {
+                if (!isNaN(this.textTwo)) {
+                    const names = ['Isra', 'Harun', 'Asiya', 'Bilal', 'Fatima', 'Bushra', 'Asif'];
+                    var pin = parseInt(this.textTwo,10);
+                    var index = parseInt(pin / 100);
+                    if (index <= 6 && (pin % 100) == index*3+7) {
+                        posterName = names[index];
+                        document.getElementById("loginLabel").innerHTML = "Logged in as: "+posterName;
+                    }
+                    //document.getElementById("loginLabel").innerHTML = index;
+                }
+            },
             async createPost() {
-                await PostService.insertPost(this.text);
+                await PostService.insertPost(this.text+' - '+posterName);
                 this.posts = await PostService.getPosts();
             },
             async deletePost(id) {
