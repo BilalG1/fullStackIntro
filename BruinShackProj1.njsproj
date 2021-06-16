@@ -32,7 +32,6 @@
     <Content Include=".gitignore">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="client\.gitignore" />
     <Content Include="client\babel.config.js" />
     <Content Include="client\node_modules\%40babel\code-frame\lib\index.js" />
     <Content Include="client\node_modules\%40babel\code-frame\LICENSE" />
